@@ -19,12 +19,21 @@ def preprocess(df, scaler):
     df.drop(columns=['Unnamed: 0', 'id'], inplace=True, errors='ignore')
     df.columns = df.columns.str.replace(' ', '_')
 
+    # Set defaults for optional fields
+    if 'Flight_Distance' not in df.columns:
+        df['Flight_Distance'] = 0
+    if 'Departure_Delay_in_Minutes' not in df.columns:
+        df['Departure_Delay_in_Minutes'] = 0
+    if 'Arrival_Delay_in_Minutes' not in df.columns:
+        df['Arrival_Delay_in_Minutes'] = 0
+
     # log-transform delay columns
     df['Departure_Delay_in_Minutes'] = np.log1p(df['Departure_Delay_in_Minutes'])
     df['Arrival_Delay_in_Minutes'] = np.log1p(df['Arrival_Delay_in_Minutes'])
 
-    # feature engineering
-    df['has_delay'] = ((df['Departure_Delay_in_Minutes'] > 0) | (df['Arrival_Delay_in_Minutes'] > 0)).astype(int)
+    # feature engineering: use has_delay if provided, otherwise compute from delays
+    if 'has_delay' not in df.columns:
+        df['has_delay'] = ((df['Departure_Delay_in_Minutes'] > 0) | (df['Arrival_Delay_in_Minutes'] > 0)).astype(int)
 
     # fill missing values
     for col in df.select_dtypes(exclude='object').columns:
