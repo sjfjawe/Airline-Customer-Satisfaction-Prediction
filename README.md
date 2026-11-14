@@ -4,7 +4,7 @@ A machine learning web application that predicts whether an airline passenger wi
 
 **Live Demo:** [airlinesatisfactionpredictor-env.eba-mcateaih.us-east-2.elasticbeanstalk.com](http://airlinesatisfactionpredictor-env.eba-mcateaih.us-east-2.elasticbeanstalk.com)
 
-<img width="1485" height="942" alt="image" src="https://github.com/user-attachments/assets/6acb9d09-ec13-4c96-9770-0675bc2186b5" />
+<img width="1485" height="942" alt="Screenshot 2026-11-14 at 11 46 31 AM" src="https://github.com/user-attachments/assets/7114b184-c42a-45f7-b3c7-cf6785b4a66d" />
 
 ## Overview
 
