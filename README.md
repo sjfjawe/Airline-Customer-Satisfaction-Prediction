@@ -4,7 +4,7 @@ A machine learning web application that predicts whether an airline passenger wi
 
 **Live Demo:** [airlinesatisfactionpredictor-env.eba-mcateaih.us-east-2.elasticbeanstalk.com](http://airlinesatisfactionpredictor-env.eba-mcateaih.us-east-2.elasticbeanstalk.com)
 
-![App Screenshot](https://github.com/sjfjawe/Airline-Customer-Satisfaction-Prediction/raw/main/screenshot.png)
+<img width="1485" height="942" alt="image" src="https://github.com/user-attachments/assets/6acb9d09-ec13-4c96-9770-0675bc2186b5" />
 
 ## Overview
 
@@ -19,33 +19,19 @@ This project uses a Random Forest classifier trained on airline passenger survey
 ## Dataset
 
 Source: [Hugging Face - Airline Satisfaction Analysis](https://huggingface.co/datasets/drukeroni/airline-satisfaction-analysis)
-
 - **Training samples:** 103,904
-- **Test samples:** 25,976
+- **Test samples:** 25,976 [data source has split the whole set into train vs test]
 - **Features:** 22 (passenger info, flight details, service ratings)
 - **Target:** Satisfied vs Neutral/Dissatisfied
 
 ## Model
-
-**Algorithm:** Random Forest Classifier
-
-**Hyperparameters:**
-- `n_estimators`: 130
-- `max_depth`: 10
-- `min_samples_leaf`: 3
-
-**Performance:**
-| Metric | Validation | Test |
-|--------|------------|------|
-| Accuracy | 96.2% | 96.1% |
-| ROC-AUC | 99.0% | 99.0% |
+**Algorithm:** I tried Logistic regression, Decision Tree and Random Forest Classifier
+**Final selection:** Random Forest Classifier is the best performing one
 
 ### Top Predictive Features
-1. Online Boarding
-2. Inflight Entertainment
-3. Seat Comfort
-4. Class (Business > Eco)
-5. Type of Travel (Business > Personal)
+1. survey output which has standardize Online Boarding, Inflight Entertainment, Seat Comfort etc rationales into 0-5 point
+2. Class (Business > Eco)
+3. Type of Travel (Business > Personal)
 
 ## Project Structure
 
@@ -100,33 +86,6 @@ python serve.py
 POST /predict
 Content-Type: application/json
 ```
-
-### Request Body
-```json
-{
-  "Gender": "Female",
-  "Customer_Type": "Loyal Customer",
-  "Age": 35,
-  "Type_of_Travel": "Business travel",
-  "Class": "Business",
-  "has_delay": 0,
-  "Inflight_wifi_service": 4,
-  "Departure/Arrival_time_convenient": 4,
-  "Ease_of_Online_booking": 4,
-  "Gate_location": 3,
-  "Food_and_drink": 4,
-  "Online_boarding": 5,
-  "Seat_comfort": 4,
-  "Inflight_entertainment": 5,
-  "On-board_service": 4,
-  "Leg_room_service": 4,
-  "Baggage_handling": 4,
-  "Checkin_service": 4,
-  "Inflight_service": 4,
-  "Cleanliness": 4
-}
-```
-
 ### Response
 ```json
 {
